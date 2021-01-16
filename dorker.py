@@ -48,7 +48,7 @@ def dorking(dork, fullurl):
                         else:
                             print('[*] '+doms+' [*]')
                             save = open('result.txt', 'a')
-                            save.write('http://'+doms+'\n')
+                            save.write(doms+'\n')
                             save.close()
                             alldomain.append(doms)
                     else:
@@ -58,7 +58,7 @@ def dorking(dork, fullurl):
                         else:
                             print('[*] '+doms+' [*]')
                             save = open('result.txt', 'a')
-                            save.write('http://'+doms+'\n')
+                            save.write(doms+'\n')
                             save.close()
                             alldomain.append(doms)
                         
