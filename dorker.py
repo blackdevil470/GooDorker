@@ -31,7 +31,6 @@ def get():
 def dorking(dork, fullurl):
     global alldomain
     dork = urllib.parse.quote(dork)
-    save = open('result.txt', 'a')
     csiLib, cx, cseToken, exp, rsz = get()
     try:
         page = 0
@@ -47,6 +46,7 @@ def dorking(dork, fullurl):
                             print('[DUPLICATE] '+doms)
                         else:
                             print('[*] '+doms+' [*]')
+                            save = open('result.txt', 'a')
                             save.write('http://'+doms+'\n')
                             save.close()
                             alldomain.append(doms)
@@ -56,6 +56,7 @@ def dorking(dork, fullurl):
                             print('[DUPLICATE] '+doms)
                         else:
                             print('[*] '+doms+' [*]')
+                            save = open('result.txt', 'a')
                             save.write('http://'+doms+'\n')
                             save.close()
                             alldomain.append(doms)
