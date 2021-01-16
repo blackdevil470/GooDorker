@@ -30,7 +30,9 @@ def get():
         
 def dorking(dork):
     global alldomain
+    fullurl = input('Full URL Y/n : ')
     dork = urllib.parse.quote(dork)
+    save = open('result.txt', 'a')
     csiLib, cx, cseToken, exp, rsz = get()
     try:
         page = 0
@@ -41,14 +43,24 @@ def dorking(dork):
                 print('[OK] TOTAL DOMAIN >> '+str(len(alldomain)))
                 print('[DORK] '+str(dork))
                 for doms in domain:
-                    if doms in alldomain:
-                        print('[DUPLICATE] '+doms)
+                    if (fullurl == 'y') or (fullurl == 'Y'):
+                        if doms in alldomain:
+                            print('[DUPLICATE] '+doms)
+                        else:
+                            print('[*] '+doms+' [*]')
+                            save.write('http://'+doms+'\n')
+                            save.close()
+                            alldomain.append(doms)
                     else:
-                        print('[*] '+doms+' [*]')
-                        save = open('result.txt', 'a')
-                        save.write('http://'+doms+'\n')
-                        save.close()
-                        alldomain.append(doms)
+                        doms = cari('(http.?://.*?)/', doms)[0]
+                        if doms in alldomain:
+                            print('[DUPLICATE] '+doms)
+                        else:
+                            print('[*] '+doms+' [*]')
+                            save.write('http://'+doms+'\n')
+                            save.close()
+                            alldomain.append(doms)
+                        
             else:
                 print('[NOT OK] NO RESULTS FOUND!!!')
                 print('[DORK] '+str(dork))
@@ -71,7 +83,7 @@ def Main():
         xxx = open(input('DORK ~# '), 'r').read().splitlines()
     except IOError:
         Main()
-    with ThreadPoolExecutor(max_workers=5) as exc:
+    with ThreadPoolExecutor(max_workers=7) as exc:
         for targ in xxx:
             exc.submit(dorking, targ)
 
