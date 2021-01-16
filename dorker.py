@@ -37,7 +37,7 @@ def dorking(dork, fullurl):
         page = 0
         while page <= 500:
             dorker = requests.get('https://cse.google.com/cse/element/v1?rsz='+rsz[0]+'&num=10&&start='+str(page)+'&hl=en&source=gcsc&gss=.com&cselibv='+csiLib[0]+'&cx='+cx[0]+'&q='+dork+'&safe=off&cse_tok='+cseToken[0]+'&exp='+exp[0]+','+exp[1]+'&callback=google.search.cse.api16950', headers=headers)
-            domain = [cari('&q=(.*?)&sa', x)[0].split('/')[2] for x in cari('"clicktrackUrl": "(.*?)"', dorker.text)]
+            domain = [cari('&q=(.*?)&sa', x)[0] for x in cari('"clicktrackUrl": "(.*?)"', dorker.text)]
             if len(domain) != 0:
                 print('[OK] TOTAL DOMAIN >> '+str(len(alldomain)))
                 print('[DORK] '+str(dork))
