@@ -42,6 +42,7 @@ def dorking(dork, fullurl):
                 print('[DORK] '+str(dork))
                 for doms in domain:
                     if (fullurl == 'y') or (fullurl == 'Y'):
+                        doms = urllib.parse.unquote(doms)
                         if doms in alldomain:
                             print('[DUPLICATE] '+doms)
                         else:
