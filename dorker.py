@@ -67,6 +67,7 @@ def Main():
 ╚═══╩══╩══╩═══╩══╩╝╚╝╚╩══╩╝ By FaizGanz14
 """
     try:
+        print(ban)
         xxx = open(input('DORK ~# '), 'r').read().splitlines()
     except IOError:
         Main()
