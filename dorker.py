@@ -28,9 +28,8 @@ def get():
     finally:
         return csiLib, cx, cseToken, exp, rsz
         
-def dorking(dork):
+def dorking(dork, fullurl):
     global alldomain
-    fullurl = input('Full URL Y/n : ')
     dork = urllib.parse.quote(dork)
     save = open('result.txt', 'a')
     csiLib, cx, cseToken, exp, rsz = get()
@@ -81,11 +80,12 @@ def Main():
     try:
         print(ban)
         xxx = open(input('DORK ~# '), 'r').read().splitlines()
+        yyy = input('Full URL Y/n : ')
     except IOError:
         Main()
     with ThreadPoolExecutor(max_workers=7) as exc:
         for targ in xxx:
-            exc.submit(dorking, targ)
+            exc.submit(dorking, targ, yyy)
 
 if __name__ == '__main__':
     Main()
